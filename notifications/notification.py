@@ -21,6 +21,7 @@ class Notification:
         print(response)
         
     def notificationBody(self,notificationTitle, goodPrices):
+        locale.setlocale(locale.LC_ALL, '')
         text = notificationTitle
         for book in goodPrices:
             price = locale.format_string("%.0f",book["price"], grouping=True)
