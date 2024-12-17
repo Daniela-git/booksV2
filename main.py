@@ -1,4 +1,4 @@
-from playwright.sync_api import Page, expect
+from playwright.sync_api import Page
 import os
 from test_pages import LoginPage, MyListPage
 from notion.updateData import writeData
