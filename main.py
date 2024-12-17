@@ -8,8 +8,8 @@ from notifications import notification
 def test_booksV2(page: Page):    
     loginPage = LoginPage(page)
     myListPage = MyListPage(page)
-    page.goto(os.environ("URL"))
-    loginPage.login(os.environ("USERNAME"),os.environ("PASSWORD"))  
+    page.goto(os.environ["URL"])
+    loginPage.login(os.environ["USERNAME"],os.environ["PASSWORD"])  
     page.wait_for_load_state("networkidle")  
     myListPage.getData()
     #updating notion tables

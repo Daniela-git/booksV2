@@ -3,7 +3,7 @@ import os
 
 class NotionQuery:
   def __init__(self):
-    self.dbIdTable1 = os.environ("DBIDTABLE1")
+    self.dbIdTable1 = os.environ["DBIDTABLE1"]
     self.notion = Client(auth=os.environ["NOTION_KEY"])
 
   def create_page_table1(self,title,currentPrice,lowest, pageId):  
