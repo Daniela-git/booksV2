@@ -1,4 +1,4 @@
-from notifications import notification
+import notification
 
 notificationObj = notification.Notification()
 
