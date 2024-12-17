@@ -1,1 +1,2 @@
-from .login import LoginPage,MyListPage
+from .login import LoginPage
+from .myList import MyListPage

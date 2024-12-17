@@ -1,21 +1,22 @@
-
-import re
 from playwright.sync_api import Page, expect
-from dotenv import load_dotenv
 import os
 from test_pages import LoginPage, MyListPage
+from notion.updateData import writeData
+from notifications import notification
 
 
-def test_booksV2(page: Page):
-    load_dotenv()
+def test_booksV2(page: Page):    
     loginPage = LoginPage(page)
     myListPage = MyListPage(page)
-    page.goto("https://www.buscalibre.com.co/v2/u")
-    print(os.getenv("USERNAME"))
-    loginPage.login(page,os.getenv("USERNAME"),os.getenv("PASSWORD"))
+    page.goto(os.environ("URL"))
+    loginPage.login(os.environ("USERNAME"),os.environ("PASSWORD"))  
+    page.wait_for_load_state("networkidle")  
     myListPage.getData()
-    # Expect a title "to contain" a substring.
-    expect(page).to_have_title(re.compile("buscalibre"))
-
-if __name__ == "__main__":
-  test_booksV2()
+    #updating notion tables
+    data = writeData(myListPage.todaysData)
+    notificationObj = notification.Notification()
+    if(len(data["goodPrices"]) > 0):
+      notificationObj.sendNotification(notificationObj.notificationBody("GOOD PRICE(S)",data["goodPrices"]))
+    if(len(data["lowest"]) > 0):
+      notificationObj.sendNotification(notificationObj.notificationBody("NEW LOWEST(S)",data["lowest"]))
+    

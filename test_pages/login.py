@@ -1,4 +1,4 @@
-from playwright.sync_api import Page
+from playwright.sync_api import Page, expect
 
 class LoginPage():
     username = "#signin_username"
@@ -13,3 +13,5 @@ class LoginPage():
       self.page.locator(self.continueBtn).first.click()
       self.page.locator(self.password).fill(password)
       self.page.get_by_role("button", name="Ingresar").click()
+      expect(self.page.locator(self.username)).not_to_be_visible()
+      

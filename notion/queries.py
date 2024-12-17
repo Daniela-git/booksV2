@@ -42,7 +42,6 @@ class NotionQuery:
           },
         }
       }
-
     return self.notion.pages.create(**query)
   
   def create_page_db(self,page_id,title):
@@ -182,7 +181,11 @@ class NotionQuery:
         ],
       },
     }
-    return self.notion.databases.query(**query)["results"][0]
+    response = self.notion.databases.query(**query)
+    results = response["results"]
+    if (len(results)==0):
+      return False
+    return results[0]
     
   def get_page_table2(self,dbId,price):
     query = {
