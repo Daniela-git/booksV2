@@ -8,6 +8,8 @@ from notifications import notification
 def test_booksV2(page: Page):    
     loginPage = LoginPage(page)
     myListPage = MyListPage(page)
+    print(os.environ["URL"])
+    print(os.environ["USERNAME"])
     page.goto(os.environ["URL"])
     loginPage.login(os.environ["USERNAME"],os.environ["PASSWORD"])  
     page.wait_for_load_state("networkidle")  
