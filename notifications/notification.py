@@ -2,11 +2,11 @@ import os
 import requests
 import locale
 
-class Notification:
-    TELEGRAM_BOT_TOKEN = os.environ("TELEGRAM_BOT_TOKEN")
-    TELEGRAM_CHAT_ID = os.environ("TELEGRAM_CHAT_ID")
+class Notification:  
         
     def __init__(self):
+        self.TELEGRAM_BOT_TOKEN = os.environ("TELEGRAM_BOT_TOKEN")
+        self.TELEGRAM_CHAT_ID = os.environ("TELEGRAM_CHAT_ID")
         self.headers = {
             'content-type': 'application/json',
             }
