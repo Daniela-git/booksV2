@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name="booksv2"
+version="0.1.0"
+dependencies = [
+    "notion-client>=2.2.1",
+    "playwright>=1.49.1",
+    "requests>=2.32.3",
+    "pytest-playwright>=0.6.2"
+]
+
+[tool.setuptools.packages.find]
+where=["."]
+include = ["notion*","test_pages*"]

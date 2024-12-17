@@ -1,1 +1,5 @@
 .env
+booksv2.egg-info
+build
+.pytest_cache
+__pycache__
