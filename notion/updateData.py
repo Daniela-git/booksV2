@@ -36,7 +36,7 @@ def writeData(todaysData):
         #new lowest
         if(todaysPrice < lowest):
           print("new lowest")
-          newLowests.append({"title":title, "price":lowest})
+          newLowests.append({"title":title, "price":todaysPrice})
           dataToUpdate["Lowest"] = todaysPrice 
         #good price
         elif(todaysPrice <= lowest + 5000):
