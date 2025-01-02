@@ -4,13 +4,13 @@ class LoginPage():
     username = "#signin_username"
     continueBtn = "#submit_login"
     password = "#signin_password"
-    closePopUp= ".cerrar"
+    closePopUp= "Me quedo aquí"
 
     def __init__(self,page:Page):
       self.page = page
     
     def login(self,user, password):
-      popUp = self.page.locator(self.closePopUp)
+      popUp = self.page.get_by_text(self.closePopUp)
       if(popUp.is_visible()):
         popUp.click()
       self.page.locator(self.username).fill(user)
