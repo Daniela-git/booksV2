@@ -26,7 +26,7 @@ class Notification:
         for book in goodPrices:
             price = locale.format_string("%.0f",book["price"], grouping=True)
             title = book["title"]
-            text = f"{text}\n**{title}**: ${price}"
+            text = f"{text}\n*{title}*: ${price}"
         return text
     
                 

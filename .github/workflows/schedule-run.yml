@@ -6,12 +6,13 @@ on:
     - cron: '0 14 * * *'
     - cron: '0 18 * * *'
     - cron: '0 22 * * *'
+    - cron: '0 2 * * *'
   workflow_dispatch:
 jobs:
   schedule-run:
     runs-on: ubuntu-latest
     name: todays books
-    steps:        
+    steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
@@ -28,9 +29,9 @@ jobs:
           python-version: '3.x'
       - name: Install packages
         run: |
-            python -m pip install --upgrade pip setuptools wheel            
-            pip install .
-            playwright install
+          python -m pip install --upgrade pip setuptools wheel            
+          pip install .
+          playwright install
       - name: Run script
         env:
           USERNAME: ${{ secrets.USERNAME }}
@@ -41,13 +42,13 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: |
-            echo {{USERNAME}}
-            pytest -s main.py --tracing=retain-on-failure        
+          echo {{USERNAME}}
+          pytest -s main.py --tracing=retain-on-failure
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:
-            name: playwright-traces
-            path: test-results/
+          name: playwright-traces
+          path: test-results/
       - name: Send notification if fails
         working-directory: notifications
         env:
